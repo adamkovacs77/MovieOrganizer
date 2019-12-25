@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "277870288561",
+    "firebase_url": "https://movieorganizer-a4f1d.firebaseio.com",
+    "project_id": "movieorganizer-a4f1d",
+    "storage_bucket": "movieorganizer-a4f1d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277870288561:android:29ac5f587ba92510fc0c90",
+        "android_client_info": {
+          "package_name": "com.example.movieorganizer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "277870288561-h6tlale2r2rqccul8031faoiiud1pp53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5isrXO0KO064VfObqnxzuWvytVD7EnGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "277870288561-h6tlale2r2rqccul8031faoiiud1pp53.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
