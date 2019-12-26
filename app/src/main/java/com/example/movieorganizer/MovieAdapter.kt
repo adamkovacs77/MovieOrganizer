@@ -36,7 +36,7 @@ class MovieAdapter(context: Context, to_delete: Boolean, items: List<Movie>?) :
         holder.mTitleView.text = title
         holder.mYearView.text = year
         val imageUrl: String
-        imageUrl = if (!detail.poster.equals("N/A")) {
+        imageUrl = if (detail.poster != "N/A") {
             detail.poster
         } else { // default image if there is no poster available
             "http://www.imdb.com/images/nopicture/medium/film.png"

@@ -18,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.time.LocalDate
 
 class MainActivity : AppCompatActivity(){
 
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity(){
         searchButton.setOnClickListener{ startSearch() }
 
         movieButton.setOnClickListener {
-            val intent= Intent(this@MainActivity, MoviesActivity::class.java)
+            val intent = Intent(this@MainActivity, MoviesActivity::class.java)
             startActivity(intent)
         }
 
@@ -78,9 +79,17 @@ class MainActivity : AppCompatActivity(){
                 val disposable = getMoviesListBySearch(movieTitle)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe{movies ->
-                            mAdapter = MovieAdapter(this@MainActivity, false, movies)
-                            recyclerView.adapter = mAdapter
+                    .subscribe { movies ->
+                            if (movies.isEmpty()) {
+                                Snackbar.make(
+                                    recyclerView,
+                                    "No movie was found matching the title you entered!",
+                                    Snackbar.LENGTH_LONG
+                                ).show()
+                            } else {
+                                mAdapter = MovieAdapter(this@MainActivity, false, movies)
+                                recyclerView.adapter = mAdapter
+                            }
                         }
 
             }
@@ -118,16 +127,28 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun getMoviesListBySearch(searchKey: String): Observable<List<Movie>> =
-        client.searchMovies(searchKey)
+        client.searchMovies(searchKey).
+            doOnError {
+                println(it.stackTrace)
+            }
             .map { searchResult ->
-                searchResult?.search
+                // return an empty list if there was no response from the API
+                if (searchResult.response == "False") {
+                    emptyList<Movie>()
+                } else {
+                    searchResult.search
+                }
             }
             .map { searches ->
-                val movies = mutableListOf<Movie>()
-                for (search in searches) {
-                    movies.add(Movie(search.imdbId, search.title, search.poster, search.year, search.type, ""))
+                if (searches.isNotEmpty()) {
+                    val movies = mutableListOf<Movie>()
+                    for (search in searches) {
+                        movies.add(Movie(search.imdbId, search.title, search.poster, search.year, search.type, ""))
+                    }
+                    movies
+                } else {
+                    searches
                 }
-                movies
             }
 
     /**
