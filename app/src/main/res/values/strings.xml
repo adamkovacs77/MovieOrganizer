@@ -9,4 +9,7 @@
     <string name="enter_a_movie_title">Enter a movie title</string>
     <string name="search_for_a_movie">Search for a movie</string>
     <string name="search_movie">search_movie</string>
+    <string name="delete_movie">Delete movie</string>
+    <string name="delete_series">Delete series</string>
+    <string name="delete">delete</string>
 </resources>

@@ -18,6 +18,7 @@ class MoviesActivity : AppCompatActivity() {
     private lateinit var mAdapter: MovieAdapter
     private lateinit var db: FirebaseFirestore
     private lateinit var moviesList: ArrayList<Movie>
+    private lateinit var deleteButton: MovieAdapter.ViewHolder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,25 +27,30 @@ class MoviesActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recycler_view_movies)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.visibility = RecyclerView.VISIBLE
+
         db = FirebaseFirestore.getInstance()
         moviesList = ArrayList()
         db.collection("movie")
             .get()
             .addOnSuccessListener { documents ->
+
                 for (document in documents) {
                     var movie: Movie = Movie(document.get("imdbID").toString(),
                         document.get("Title").toString(),
-                        document.get("Year").toString(),
                         document.get("Poster").toString(),
-                        document.get("Type").toString())
+                        document.get("Year").toString(),
+                        "movie",
+                        document.id)
                     moviesList.add(movie)
                 }
+
+                mAdapter = MovieAdapter(this@MoviesActivity, true, moviesList)
+                recyclerView.adapter = mAdapter
+
             }
             .addOnFailureListener { exception ->
                 Log.w("MovieDB", "Error getting documents: ", exception)
             }
-        mAdapter = MovieAdapter(this@MoviesActivity, moviesList)
-        recyclerView.adapter = mAdapter
 
         val goBackButton: Button = findViewById(R.id.moviesGoBackButton)
         goBackButton.setOnClickListener{

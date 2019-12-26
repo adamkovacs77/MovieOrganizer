@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity(){
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe{movies ->
-                            mAdapter = MovieAdapter(this@MainActivity, movies)
+                            mAdapter = MovieAdapter(this@MainActivity, false, movies)
                             recyclerView.adapter = mAdapter
                         }
 
@@ -104,15 +104,28 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
+    override fun onBackPressed() {
+        if(search.text.length > 0) {
+            recyclerView.visibility = RecyclerView.GONE
+            movieButton.visibility = Button.VISIBLE
+            seriesButton.visibility = Button.VISIBLE
+
+            search.text.clear()
+            return
+        }
+
+        super.onBackPressed()
+    }
+
     private fun getMoviesListBySearch(searchKey: String): Observable<List<Movie>> =
         client.searchMovies(searchKey)
             .map { searchResult ->
-                searchResult.search
+                searchResult?.search
             }
             .map { searches ->
                 val movies = mutableListOf<Movie>()
                 for (search in searches) {
-                    movies.add(Movie(search.imdbId, search.title, search.poster, search.year, search.type))
+                    movies.add(Movie(search.imdbId, search.title, search.poster, search.year, search.type, ""))
                 }
                 movies
             }

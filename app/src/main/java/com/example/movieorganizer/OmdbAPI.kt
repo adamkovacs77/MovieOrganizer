@@ -36,9 +36,15 @@ class OmdbAPI(baseUrl: String, apiKey: String) {
             .build()
     }
 
-    fun searchMovies(searchKey: String): Observable<SearchResult> =
-        service.searchMovies(searchKey)
+    fun searchMovies(searchKey: String): Observable<SearchResult> {
+        var res: Observable<SearchResult> = service.searchMovies(searchKey)
 
+        return if(res == null) {
+           Observable.empty()
+        }
+        else
+            return res
+    }
     fun getMovie(imdbId: String): Observable<Movie> =
         service.getMovie(imdbId)
 }

@@ -13,17 +13,17 @@ import com.bumptech.glide.Glide
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 
-class MovieAdapter(context: Context, items: List<Movie>?) :
+class MovieAdapter(context: Context, to_delete: Boolean, items: List<Movie>?) :
     RecyclerView.Adapter<MovieAdapter.ViewHolder?>() {
-    private var mValues: List<Movie>?
+    private var mValues: MutableList<Movie>?
     private var mContext: Context
+    private var mToDelete: Boolean
     private var db: FirebaseFirestore = FirebaseFirestore.getInstance()
-    private var movieCollection: CollectionReference = db.collection("movie")
-    private var seriesCollection: CollectionReference = db.collection("series")
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item_movie, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, mToDelete)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -49,6 +49,7 @@ class MovieAdapter(context: Context, items: List<Movie>?) :
         ) // invalidate the width so that glide wont use that dimension
 
         Glide.with(mContext).load(imageUrl).into(holder.mThumbImageView)
+
         holder.mButtonAddMovie.setOnClickListener {
             val item = hashMapOf(
                 "imdbID" to imdbId,
@@ -66,6 +67,20 @@ class MovieAdapter(context: Context, items: List<Movie>?) :
                     Log.w("MovieAdapter", "Error adding document", e)
                 }
         }
+
+        holder.mDeleteButton.setOnClickListener {
+            db.collection(type).document(detail.doc_id).delete()
+                .addOnSuccessListener {
+                    Log.d(
+                        "MovieAdapter",
+                        "DocumentSnapshot successfully deleted!"
+                    )
+
+                    mValues!!.removeAt(position)
+                    notifyDataSetChanged()
+                }
+                .addOnFailureListener { e -> Log.w("MovieAdapter", "Error deleting document", e) }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -74,10 +89,11 @@ class MovieAdapter(context: Context, items: List<Movie>?) :
         } else mValues!!.size
     }
 
-    inner class ViewHolder(private val mView: View) : RecyclerView.ViewHolder(mView) {
+    inner class ViewHolder(private val mView: View, to_delete: Boolean) : RecyclerView.ViewHolder(mView) {
         val mTitleView: TextView
         val mYearView: TextView
         val mButtonAddMovie: Button
+        val mDeleteButton: Button
         val mThumbImageView: ImageView
 
         init {
@@ -85,6 +101,19 @@ class MovieAdapter(context: Context, items: List<Movie>?) :
             mYearView = mView.findViewById(R.id.movie_year)
             mThumbImageView = mView.findViewById(R.id.thumbnail)
             mButtonAddMovie = mView.findViewById(R.id.button_add_movie)
+            mDeleteButton = mView.findViewById(R.id.button_delete)
+
+            mButtonAddMovie.visibility = if (to_delete) {
+                Button.GONE
+            }
+            else
+                Button.VISIBLE
+
+            mDeleteButton.visibility = if (to_delete) {
+                Button.VISIBLE
+            }
+            else
+                Button.GONE
         }
     }
 
@@ -94,8 +123,8 @@ class MovieAdapter(context: Context, items: List<Movie>?) :
     }
 
     init {
-
-        mValues = items
+        mToDelete = to_delete
+        mValues = items!!.toMutableList()
         mContext = context
     }
 }

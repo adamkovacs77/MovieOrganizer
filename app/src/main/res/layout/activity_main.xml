@@ -59,7 +59,6 @@
         android:hint="@string/search_for_a_movie"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:text="@string/search_movie"
         app:layout_constraintEnd_toStartOf="@+id/search_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

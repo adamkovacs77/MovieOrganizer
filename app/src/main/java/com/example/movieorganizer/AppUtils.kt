@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.inputmethod.InputMethodManager
+import java.lang.Exception
 
 class AppUtils {
 
@@ -15,7 +16,13 @@ class AppUtils {
                 activity.getSystemService(
                     Activity.INPUT_METHOD_SERVICE
                 ) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
+
+            try {
+                inputMethodManager?.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
+            }
+            catch (e: Exception) {
+
+            }
         }
 
         fun checkNetworkState(context: Context): Boolean {

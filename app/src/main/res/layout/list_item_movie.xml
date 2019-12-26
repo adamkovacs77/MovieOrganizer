@@ -59,6 +59,12 @@
             android:layout_height="wrap_content"
             android:text="Add to my list" />
 
+        <Button
+            android:id="@+id/button_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
