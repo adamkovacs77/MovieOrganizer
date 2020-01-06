@@ -6,8 +6,8 @@ import android.util.Log
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movieorganizer.domain.Movie
 import com.google.firebase.firestore.FirebaseFirestore
-import java.time.LocalDate
 
 class SeriesActivity : AppCompatActivity() {
 
@@ -30,12 +30,15 @@ class SeriesActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
 
                 for (document in documents) {
-                    var movie: Movie = Movie(document.get("imdbID").toString(),
-                        document.get("Title").toString(),
-                        document.get("Poster").toString(),
-                        document.get("Year").toString(),
-                        "series",
-                        document.id)
+                    var movie: Movie =
+                        Movie(
+                            document.get("imdbID").toString(),
+                            document.get("Title").toString(),
+                            document.get("Poster").toString(),
+                            document.get("Year").toString(),
+                            "series",
+                            document.id
+                        )
                     seriesList.add(movie)
                 }
                 mAdapter = MovieAdapter(this@SeriesActivity, true, seriesList)

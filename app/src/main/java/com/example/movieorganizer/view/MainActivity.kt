@@ -2,23 +2,20 @@ package com.example.movieorganizer
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Debug
-import android.util.LayoutDirection
-import android.util.Log
 import android.view.KeyEvent
-import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Adapter
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movieorganizer.API.OmdbAPI
+import com.example.movieorganizer.domain.Movie
+import com.example.movieorganizer.utils.AppUtils
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.time.LocalDate
 
 class MainActivity : AppCompatActivity(){
 
@@ -40,7 +37,10 @@ class MainActivity : AppCompatActivity(){
         seriesButton = findViewById(R.id.seriesList)
         recyclerView = findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        client = OmdbAPI("http://www.omdbapi.com", "c68c4396")
+        client = OmdbAPI(
+            "http://www.omdbapi.com",
+            "c68c4396"
+        )
 
         search.setOnEditorActionListener { _, actionId, event ->
             var handled = false
@@ -143,7 +143,16 @@ class MainActivity : AppCompatActivity(){
                 if (searches.isNotEmpty()) {
                     val movies = mutableListOf<Movie>()
                     for (search in searches) {
-                        movies.add(Movie(search.imdbId, search.title, search.poster, search.year, search.type, ""))
+                        movies.add(
+                            Movie(
+                                search.imdbId,
+                                search.title,
+                                search.poster,
+                                search.year,
+                                search.type,
+                                ""
+                            )
+                        )
                     }
                     movies
                 } else {

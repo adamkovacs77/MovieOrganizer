@@ -6,12 +6,8 @@ import android.util.Log
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movieorganizer.domain.Movie
 import com.google.firebase.firestore.FirebaseFirestore
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.*
-import java.time.LocalDate
 
 class MoviesActivity : AppCompatActivity() {
 
@@ -36,12 +32,15 @@ class MoviesActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
 
                 for (document in documents) {
-                    var movie: Movie = Movie(document.get("imdbID").toString(),
-                        document.get("Title").toString(),
-                        document.get("Poster").toString(),
-                        document.get("Year").toString(),
-                        "movie",
-                        document.id)
+                    var movie: Movie =
+                        Movie(
+                            document.get("imdbID").toString(),
+                            document.get("Title").toString(),
+                            document.get("Poster").toString(),
+                            document.get("Year").toString(),
+                            "movie",
+                            document.id
+                        )
                     moviesList.add(movie)
                 }
 

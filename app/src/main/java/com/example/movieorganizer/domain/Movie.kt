@@ -1,4 +1,4 @@
-package com.example.movieorganizer
+package com.example.movieorganizer.model
 
 import com.google.gson.annotations.SerializedName
 import java.time.LocalDate
