@@ -1,4 +1,4 @@
-package com.example.movieorganizer
+package com.example.movieorganizer.api
 
 import okhttp3.Interceptor
 import okhttp3.Response

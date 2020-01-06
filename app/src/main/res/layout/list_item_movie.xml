@@ -53,6 +53,19 @@
             android:paddingBottom="@dimen/card_padding_large"
             tools:text="2013" />
 
+        <TextView
+            android:id="@+id/added_on"
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/card_padding_large"
+            android:paddingRight="@dimen/card_padding_large"
+            android:paddingBottom="@dimen/card_padding_large"
+            android:textStyle="italic"
+            tools:text="Added on ..." />
+
         <Button
             android:id="@+id/button_add_movie"
             android:layout_width="match_parent"

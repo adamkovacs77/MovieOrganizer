@@ -1,5 +1,7 @@
-package com.example.movieorganizer
+package com.example.movieorganizer.api
 
+import com.example.movieorganizer.domain.Movie
+import com.example.movieorganizer.domain.SearchResult
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

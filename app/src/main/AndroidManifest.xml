@@ -13,9 +13,9 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".SeriesActivity"></activity>
-        <activity android:name=".MoviesActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.SeriesActivity"></activity>
+        <activity android:name=".view.MoviesActivity" />
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

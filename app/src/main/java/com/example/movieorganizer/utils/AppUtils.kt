@@ -1,4 +1,4 @@
-package com.example.movieorganizer
+package com.example.movieorganizer.utils
 
 import android.app.Activity
 import android.content.Context
@@ -6,6 +6,8 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.inputmethod.InputMethodManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import java.lang.Exception
 
 class AppUtils {
@@ -38,6 +40,10 @@ class AppUtils {
                 }
             }
             return false
+        }
+
+        fun makeSnackBar(snackbarText: String, recyclerView: RecyclerView): Snackbar{
+            return Snackbar.make(recyclerView, snackbarText, Snackbar.LENGTH_LONG)
         }
     }
 }

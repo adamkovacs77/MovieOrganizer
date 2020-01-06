@@ -1,4 +1,4 @@
-package com.example.movieorganizer
+package com.example.movieorganizer.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,13 +9,15 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movieorganizer.API.OmdbAPI
+import com.example.movieorganizer.api.OmdbAPI
+import com.example.movieorganizer.R
 import com.example.movieorganizer.domain.Movie
 import com.example.movieorganizer.utils.AppUtils
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.time.LocalDate
 
 class MainActivity : AppCompatActivity(){
 
@@ -81,13 +83,15 @@ class MainActivity : AppCompatActivity(){
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe { movies ->
                             if (movies.isEmpty()) {
-                                Snackbar.make(
-                                    recyclerView,
-                                    "No movie was found matching the title you entered!",
-                                    Snackbar.LENGTH_LONG
-                                ).show()
+                                AppUtils.makeSnackBar("No movie was found matching the title you entered!", recyclerView).show()
                             } else {
-                                mAdapter = MovieAdapter(this@MainActivity, false, movies)
+                                mAdapter =
+                                    MovieAdapter(
+                                        this@MainActivity,
+                                        false,
+                                        movies,
+                                        recyclerView
+                                    )
                                 recyclerView.adapter = mAdapter
                             }
                         }
@@ -98,18 +102,10 @@ class MainActivity : AppCompatActivity(){
                 movieButton.visibility = Button.VISIBLE
                 seriesButton.visibility = Button.VISIBLE
 
-                Snackbar.make(
-                    recyclerView,
-                    "Please enter a movie title",
-                    Snackbar.LENGTH_LONG
-                ).show()
+                AppUtils.makeSnackBar("Please enter a movie title", recyclerView).show()
             }
         } else {
-            Snackbar.make(
-                recyclerView,
-                "Network not available! Please connect to the Internet.",
-                Snackbar.LENGTH_LONG
-            ).show()
+            AppUtils.makeSnackBar("Network not available! Please connect to the Internet.", recyclerView).show()
         }
     }
 
@@ -150,7 +146,8 @@ class MainActivity : AppCompatActivity(){
                                 search.poster,
                                 search.year,
                                 search.type,
-                                ""
+                                "",
+                                LocalDate.now().toString()
                             )
                         )
                     }

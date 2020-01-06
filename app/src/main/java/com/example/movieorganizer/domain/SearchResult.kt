@@ -1,6 +1,5 @@
-package com.example.movieorganizer.model
+package com.example.movieorganizer.domain
 
-import com.example.movieorganizer.model.Movie
 import com.google.gson.annotations.SerializedName
 
 data class SearchResult(
