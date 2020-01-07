@@ -8,6 +8,7 @@
 
     <Button
         android:id="@+id/search_button"
+        style="@style/button"
         android:layout_width="92dp"
         android:layout_height="42dp"
         android:layout_marginTop="32dp"
@@ -19,13 +20,13 @@
 
     <Button
         android:id="@+id/seriesList"
-        android:layout_width="178dp"
-        android:layout_height="125dp"
+        style="@style/button"
+        android:layout_width="191dp"
+        android:layout_height="82dp"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:drawableStart="@drawable/glasses_small"
         android:text="@string/my_series"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -34,17 +35,19 @@
 
     <Button
         android:id="@+id/moviesList"
-        android:layout_width="178dp"
-        android:layout_height="125dp"
+        style="@style/button"
+        android:layout_width="191dp"
+        android:layout_height="82dp"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginLeft="64dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
         android:text="@string/my_movies"
+        android:drawableStart="@drawable/movie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_movie" />
+        app:layout_constraintTop_toBottomOf="@+id/search_movie"
+        />
 
     <EditText
         android:id="@+id/search_movie"
@@ -68,7 +71,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="144dp">
+        tools:layout_editor_absoluteY="144dp"
+        android:backgroundTintMode="multiply">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"

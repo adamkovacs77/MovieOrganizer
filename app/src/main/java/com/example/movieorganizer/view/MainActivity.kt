@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity(){
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe { movies ->
                             if (movies.isEmpty()) {
-                                AppUtils.makeSnackBar("No movie was found matching the title you entered!", recyclerView).show()
+                                AppUtils.makeSnackBar(getString(R.string.no_movie_found), recyclerView).show()
                             } else {
                                 mAdapter =
                                     MovieAdapter(
@@ -102,15 +102,15 @@ class MainActivity : AppCompatActivity(){
                 movieButton.visibility = Button.VISIBLE
                 seriesButton.visibility = Button.VISIBLE
 
-                AppUtils.makeSnackBar("Please enter a movie title", recyclerView).show()
+                AppUtils.makeSnackBar(getString(R.string.enter_movie), recyclerView).show()
             }
         } else {
-            AppUtils.makeSnackBar("Network not available! Please connect to the Internet.", recyclerView).show()
+            AppUtils.makeSnackBar(getString(R.string.no_internet), recyclerView).show()
         }
     }
 
     override fun onBackPressed() {
-        if(search.text.length > 0) {
+        if(search.text.isNotEmpty()) {
             recyclerView.visibility = RecyclerView.GONE
             movieButton.visibility = Button.VISIBLE
             seriesButton.visibility = Button.VISIBLE
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity(){
             .map { searchResult ->
                 // return an empty list if there was no response from the API
                 if (searchResult.response == "False") {
-                    emptyList<Movie>()
+                    emptyList()
                 } else {
                     searchResult.search
                 }
@@ -156,10 +156,4 @@ class MainActivity : AppCompatActivity(){
                     searches
                 }
             }
-
-    /**
-     * Retrieves complete information of a movie online.
-     */
-    private fun getMovieById(imdbId: String): Observable<Movie> =
-        client.getMovie(imdbId)
 }

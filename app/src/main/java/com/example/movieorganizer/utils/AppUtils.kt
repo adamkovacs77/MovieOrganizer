@@ -20,7 +20,7 @@ class AppUtils {
                 ) as InputMethodManager
 
             try {
-                inputMethodManager?.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
+                inputMethodManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
             }
             catch (e: Exception) {
 

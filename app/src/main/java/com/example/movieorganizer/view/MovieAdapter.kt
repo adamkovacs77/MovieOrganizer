@@ -51,7 +51,7 @@ class MovieAdapter(context: Context, to_delete: Boolean, items: List<Movie>?, re
         imageUrl = if (detail.poster != "N/A") {
             detail.poster
         } else { // default image if there is no poster available
-            "http://www.imdb.com/images/nopicture/medium/film.png"
+            R.string.default_image.toString()
         }
 
         holder.mThumbImageView.layout(
@@ -69,7 +69,7 @@ class MovieAdapter(context: Context, to_delete: Boolean, items: List<Movie>?, re
                 .get()
                 .addOnSuccessListener { doc ->
                     if (doc.documents.size > 0) {
-                        AppUtils.makeSnackBar("The $type is already in your list.", mRecyclerView).show()
+                        AppUtils.makeSnackBar(mContext.getString(R.string.existing_movie_series, type), mRecyclerView).show()
                     } else {
                         val item = hashMapOf(
                             "imdbID" to imdbId,
@@ -91,7 +91,7 @@ class MovieAdapter(context: Context, to_delete: Boolean, items: List<Movie>?, re
                                 Log.w("MovieAdapter", "Error adding document", e)
                             }
 
-                        AppUtils.makeSnackBar("The $type was added to your list.", mRecyclerView).show()
+                        AppUtils.makeSnackBar(mContext.getString(R.string.movie_series_added, type), mRecyclerView).show()
                     }
                 }
         }
@@ -108,6 +108,7 @@ class MovieAdapter(context: Context, to_delete: Boolean, items: List<Movie>?, re
                     notifyDataSetChanged()
                 }
                 .addOnFailureListener { e -> Log.w("MovieAdapter", "Error deleting document", e) }
+            AppUtils.makeSnackBar(mContext.getString(R.string.movie_series_deleted, type), mRecyclerView).show()
         }
     }
 
