@@ -29,6 +29,11 @@ class MainActivity : AppCompatActivity(){
     private lateinit var client: OmdbAPI
     private lateinit var mAdapter: MovieAdapter
 
+    companion object {
+        const val OMDB_API_LINK = "http://www.omdbapi.com"
+        const val OMDB_API_KEY = "c68c4396"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,10 +44,7 @@ class MainActivity : AppCompatActivity(){
         seriesButton = findViewById(R.id.seriesList)
         recyclerView = findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        client = OmdbAPI(
-            "http://www.omdbapi.com",
-            "c68c4396"
-        )
+        client = OmdbAPI(OMDB_API_LINK, OMDB_API_KEY)
 
         search.setOnEditorActionListener { _, actionId, event ->
             var handled = false

@@ -96,7 +96,7 @@ class MovieAdapter(context: Context, to_delete: Boolean, items: List<Movie>?, re
                             "Title" to title,
                             "Poster" to poster,
                             "Year" to year,
-                            "AddedOn" to LocalDateTime.now().format(ofPattern("EEEE dd MMM yyyy HH:mm"))
+                            "AddedOn" to "Added on " + LocalDateTime.now().format(ofPattern("EEEE dd MMM yyyy HH:mm"))
                         )
 
                         db.collection(type)
