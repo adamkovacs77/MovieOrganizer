@@ -78,7 +78,6 @@
             android:id="@+id/button_delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@android:drawable/star_big_off"
             android:text="@string/delete" />
 
     </LinearLayout>

@@ -1,6 +1,9 @@
 package com.example.movieorganizer.view
 
 import android.content.Context
+import android.content.res.Resources
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.opengl.Visibility
 import android.util.Log
 import android.view.LayoutInflater
@@ -28,9 +31,11 @@ class MovieAdapter(context: Context, to_delete: Boolean, items: List<Movie>?, re
     private var mToDelete: Boolean
     private var db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var mRecyclerView = recyclerView
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item_movie, parent, false)
+
         return ViewHolder(view, mToDelete)
     }
 
@@ -42,6 +47,9 @@ class MovieAdapter(context: Context, to_delete: Boolean, items: List<Movie>?, re
         val year: String = detail.year
         val poster: String = detail.poster
         val addedOn: String = detail.addedOn
+
+        val star_on = mContext.resources.getDrawable(android.R.drawable.star_big_on)
+        val star_off = mContext.resources.getDrawable(android.R.drawable.star_big_off)
 
         holder.mTitleView.text = title
         holder.mYearView.text = year
@@ -59,9 +67,21 @@ class MovieAdapter(context: Context, to_delete: Boolean, items: List<Movie>?, re
             0,
             0,
             0
-        ) // invalidate the width so that glide wont use that dimension
+        )
 
         Glide.with(mContext).load(imageUrl).into(holder.mThumbImageView)
+
+        db.collection(type)
+            .whereEqualTo("imdbID", imdbId)
+            .get()
+            .addOnSuccessListener { doc ->
+                if (doc.documents.size > 0) {
+                    holder.mButtonAddMovie.setCompoundDrawablesRelativeWithIntrinsicBounds(star_on, null, null, null)
+                } else {
+                    holder.mButtonAddMovie.setCompoundDrawablesRelativeWithIntrinsicBounds(star_off, null, null, null)
+                }
+        }
+
 
         holder.mButtonAddMovie.setOnClickListener {
             db.collection(type)
@@ -91,6 +111,7 @@ class MovieAdapter(context: Context, to_delete: Boolean, items: List<Movie>?, re
                                 Log.w("MovieAdapter", "Error adding document", e)
                             }
 
+                        holder.mButtonAddMovie.setCompoundDrawablesRelativeWithIntrinsicBounds(star_on, null, null, null)
                         AppUtils.makeSnackBar(mContext.getString(R.string.movie_series_added, type), mRecyclerView).show()
                     }
                 }
