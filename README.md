@@ -26,8 +26,8 @@
 | Store grade    | 4.2*/5* | 4.4*/5* | 4.4*/5* | -*/-* |
 | No. of installs    | 100k+ | 5m+ | 1m+ | 0 |
 | No. of reviews    | 2.307 | 380.267  | 67.248 | 0 |
-| Adds/in-app purchases    | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: |
-| Login/user    | :x: | :x: | :x: | :x: |
+| Ads/in-app purchases    | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: |
+| Login/user    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | Real time update    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | Updates notifications    | :x: | :x: | :x: | :x: |
 | Multiplayer available    | :x: | :x: | :x: | :x: |
