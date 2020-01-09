@@ -50,4 +50,4 @@
   </p>
 
 ## 5. Conclusions
-  - In conclusion, we had to put some effort into this app because we were not familiar with Android Studio (neither with Kotlin). This was our first project in Kotlin, but we enjoyed it, especially using the OMDb API (from which we would've liked to get more data). The toughest part was designing a not so simple UI, which is still a hard task for us.
+  - In conclusion, we had to put some effort into this app because we were not familiar with Android Studio (neither with Kotlin). This was our first project in Kotlin, but we enjoyed it, especially using the OMDb API (from which we would've liked to get more data). The toughest part was designing a not so simple UI, which is still a hard task for us. We'd also like to develop this app in the future.
