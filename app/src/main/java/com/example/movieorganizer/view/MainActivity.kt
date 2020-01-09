@@ -85,6 +85,10 @@ class MainActivity : AppCompatActivity(){
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe { movies ->
                             if (movies.isEmpty()) {
+                                recyclerView.visibility = RecyclerView.GONE
+                                movieButton.visibility = Button.VISIBLE
+                                seriesButton.visibility = Button.VISIBLE
+
                                 AppUtils.makeSnackBar(getString(R.string.no_movie_found), recyclerView).show()
                             } else {
                                 mAdapter =
