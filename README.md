@@ -1,3 +1,3 @@
 ![Cover](/images/cover.png)
 
-## Movie Organizer Android Application
+# Movie Organizer Android Application
