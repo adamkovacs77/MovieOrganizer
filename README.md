@@ -1,7 +1,11 @@
-![Cover](/images/cover.png)
+<p align="center">
+  <img src="https://github.com/adamkovacs77/MovieOrganizer/blob/master/images/popcorn(1).png?raw=true"/>
+</p>
+<p align="center">
+  <img src="https://github.com/adamkovacs77/MovieOrganizer/blob/master/images/cover.png?raw=true"/>
+</p>
 
 # Movie Organizer Android Application
-![Logo](/images/popcorn(1).png)
 
 ## 1. Introduction
   - **What?**
