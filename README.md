@@ -29,5 +29,20 @@
 | Multiplayer available    | :x: | :x: | :x: | :x: |
 
 ## 4. Usage
+  - The app is pretty easy to use. When you open it you are redirected to the main screen, where you can see the two buttons (My Movies and My Series) which will lead to the list of the movies/tv shows you added.
+  <p align="center">
+    <img src="https://github.com/adamkovacs77/MovieOrganizer/blob/master/images/P1.png?raw=true"/>
+  </p>
+
+  - Below the Toolbar there is a search field where you can search for your TV shows/movies. After hitting the Search button, a list containing the shows/movies matching your search criteria will show up.
+  <p align="center">
+    <img src="https://github.com/adamkovacs77/MovieOrganizer/blob/master/images/P2.png?raw=true"/>
+  </p>
+  
+  - Moving on to the "My Movies" or "My Series" section, the movies/tv shows you previously added will show up in those sections and will look like this:
+  <p align="center">
+    <img src="https://github.com/adamkovacs77/MovieOrganizer/blob/master/images/P3.png?raw=true"/>
+    <img src="https://github.com/adamkovacs77/MovieOrganizer/blob/master/images/P4.png?raw=true"/>
+  </p>
 
 ## 5. Conclusions
