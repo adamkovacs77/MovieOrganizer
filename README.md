@@ -1,1 +1,3 @@
-Movie Organizer Android Application
+[[images/cover.png]]
+
+## Movie Organizer Android Application
