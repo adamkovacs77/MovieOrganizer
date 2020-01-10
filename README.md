@@ -17,7 +17,7 @@
   - **How?**
     - For storage we've used a Firebase Firestore database, which is a Cloud storage system.
     - For the events we've used ReactiveX, which is a library used for composing asynchronous&event-based programs using observables sequences (pretty much like the Observer pattern).
-    - We've also used an API, OMDb API, which is a REST web-service. To communicate with this API, we've used the OkHTTP3 library, which is an open-source one used to send a HTTP request and get a response.
+    - We've also used an API, OMDb API, which is a REST web-service. To communicate with this API, we've used the OkHTTP3 library (alongside with Retrofit, used for parsing JSON format received from HTTP responses), which is an open-source one used to send a HTTP request and get a response.
     (system diagram - soon to be uploaded)
     
 ## 3. State of the art
