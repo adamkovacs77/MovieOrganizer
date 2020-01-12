@@ -21,7 +21,7 @@
     (system diagram - soon to be uploaded)
     
 ## 3. State of the art
-  - Other similar apps are listeed in the table below. Basically, all the other apps are doing this job better than ours, but we've had an idea (unimpemented yet), that we didn't see in these apps: movie/tv show 'match' with a friend. Whenever you want to watch a movie with your friends, you will add them to a list and then check if any of them have seen the movie or not. This feature will probably be implemented later.
+  - Other similar apps are listeed in the table below. Basically, all the other apps are doing this job better than ours, but we've had an idea (unimplemented yet), that we didn't see in these apps: movie/tv show 'match' with a friend. Whenever you want to watch a movie with your friends, you will add them to a list and then check if any of them have seen the movie or not. This feature will probably be implemented later.
   
 | Characteristics | App 1   | App 2   | App 3   | Our app |
 | --------------- | ------- | ------- | ------- | ------- |
